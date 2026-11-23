@@ -1,0 +1,21 @@
+<?php
+session_start();
+if (isset($_SESSION['usuario_id']) && ($_SESSION['rol'] ?? '') !== 'administrador') {
+    if (str_contains($_SERVER['SCRIPT_NAME'] ?? '', '/api/')) { http_response_code(403); header('Content-Type: application/json; charset=utf-8'); echo json_encode(['ok'=>false,'mensaje'=>'Acceso exclusivo para administradores.']); }
+    else { header('Location: /Azucreativo/cliente/catalogo.php'); }
+    exit;
+}
+ header('Content-Type: application/json; charset=utf-8');
+if (!isset($_SESSION['usuario_id'])) { http_response_code(401); echo json_encode(['ok'=>false,'mensaje'=>'La sesión expiró. Inicia sesión nuevamente.']); exit; }
+require_once __DIR__ . '/../config/conexion_azucreativo.php';
+function responder($d,$c=200){http_response_code($c);echo json_encode($d,JSON_UNESCAPED_UNICODE);exit;}
+$a=$_GET['accion']??$_POST['accion']??'';
+try {
+ if($a==='listar_categorias'){$q=$pdo->query("SELECT ID_Categoria,Nombre,Descripcion FROM Categoria ORDER BY Nombre");responder(['ok'=>true,'datos'=>$q->fetchAll()]);}
+ if($a==='guardar_categoria'){$n=trim($_POST['Nombre']??'');$d=trim($_POST['Descripcion']??'');if($n==='')responder(['ok'=>false,'mensaje'=>'El nombre de la categoría es obligatorio.'],422);$s=$pdo->prepare('INSERT INTO Categoria (Nombre,Descripcion) VALUES (?,?)');$s->execute([$n,$d!==''?$d:null]);responder(['ok'=>true,'mensaje'=>'Categoría guardada correctamente.','id'=>$pdo->lastInsertId()]);}
+ if($a==='listar_productos'){$s=$pdo->query('SELECT p.ID_Producto,p.ID_Categoria,p.Nombre,p.Descripcion,p.Precio,p.Stock,p.Fecha_Caducidad,c.Nombre AS Categoria FROM Producto p LEFT JOIN Categoria c ON c.ID_Categoria=p.ID_Categoria ORDER BY p.ID_Producto DESC');responder(['ok'=>true,'datos'=>$s->fetchAll()]);}
+ if($a==='buscar_productos'){$q=trim($_GET['q']??'');if($q==='')responder(['ok'=>false,'mensaje'=>'Escribe un nombre o ID para buscar.'],422);$s=$pdo->prepare("SELECT p.ID_Producto,p.ID_Categoria,p.Nombre,p.Descripcion,p.Precio,p.Stock,p.Fecha_Caducidad,c.Nombre AS Categoria FROM Producto p LEFT JOIN Categoria c ON c.ID_Categoria=p.ID_Categoria WHERE CAST(p.ID_Producto AS CHAR)=? OR p.Nombre LIKE ? ORDER BY p.Nombre");$s->execute([$q,'%'.$q.'%']);responder(['ok'=>true,'datos'=>$s->fetchAll()]);}
+ if($a==='filtrar_categoria'){$id=(int)($_GET['id_categoria']??0);if($id<1)responder(['ok'=>false,'mensaje'=>'Selecciona una categoría válida.'],422);$s=$pdo->prepare('SELECT p.ID_Producto,p.ID_Categoria,p.Nombre,p.Descripcion,p.Precio,p.Stock,p.Fecha_Caducidad,c.Nombre AS Categoria FROM Producto p INNER JOIN Categoria c ON c.ID_Categoria=p.ID_Categoria WHERE c.ID_Categoria=? ORDER BY p.Nombre');$s->execute([$id]);responder(['ok'=>true,'datos'=>$s->fetchAll()]);}
+ if($a==='guardar_producto'){$n=trim($_POST['Nombre']??'');$cat=($_POST['ID_Categoria']??'')!==''?(int)$_POST['ID_Categoria']:null;$d=trim($_POST['Descripcion']??'');$p=$_POST['Precio']??'';$st=$_POST['Stock']??'';$f=trim($_POST['Fecha_Caducidad']??'');if($n==='')responder(['ok'=>false,'mensaje'=>'El nombre del producto es obligatorio.'],422);if(!is_numeric($p)||(float)$p<0)responder(['ok'=>false,'mensaje'=>'El precio debe ser mayor o igual a cero.'],422);if(filter_var($st,FILTER_VALIDATE_INT)===false||(int)$st<0)responder(['ok'=>false,'mensaje'=>'El stock debe ser un entero no negativo.'],422);if($cat!==null){$c=$pdo->prepare('SELECT COUNT(*) FROM Categoria WHERE ID_Categoria=?');$c->execute([$cat]);if(!$c->fetchColumn())responder(['ok'=>false,'mensaje'=>'La categoría seleccionada no existe.'],422);}if($f!==''&&!preg_match('/^\d{4}-\d{2}-\d{2}$/',$f))responder(['ok'=>false,'mensaje'=>'La fecha de caducidad no es válida.'],422);$s=$pdo->prepare('INSERT INTO Producto (ID_Categoria,Nombre,Descripcion,Precio,Stock,Fecha_Caducidad) VALUES (?,?,?,?,?,?)');$s->execute([$cat,$n,$d!==''?$d:null,(float)$p,(int)$st,$f!==''?$f:null]);responder(['ok'=>true,'mensaje'=>'Producto guardado correctamente.','id'=>$pdo->lastInsertId()]);}
+ responder(['ok'=>false,'mensaje'=>'Acción no reconocida.'],400);
+} catch(PDOException $e){error_log('Productos/categorías: '.$e->getMessage());responder(['ok'=>false,'mensaje'=>'No se pudo completar la operación. Verifica que las tablas existan y que los datos sean válidos.'],500);}

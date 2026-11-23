@@ -1,0 +1,11 @@
+/* Scroll funcional: area principal desplazable independientemente del menu. */
+html,body{margin:0!important;min-height:100%!important;height:100%!important;overflow:hidden!important}
+body .app-container{display:flex!important;height:100vh!important;min-height:100vh!important;max-height:100vh!important;overflow:hidden!important}
+body .app-container>.main-content{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;min-width:0!important;height:100vh!important;min-height:0!important;max-height:100vh!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
+body .app-container>.main-content>.view-container,
+body .app-container>.main-content .view-container{flex:0 0 auto!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+body .app-container>.main-content .view-section{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+body .app-container>.main-content .view-section.hidden{display:none!important}
+body .app-container>.sidebar{height:100vh!important;min-height:0!important;max-height:100vh!important;overflow-y:auto!important;overflow-x:hidden!important;flex-shrink:0!important}
+body .app-container>.main-content .header-bar{flex-shrink:0!important}
+@media(max-width:760px){body .app-container>.main-content{overflow-y:auto!important}}

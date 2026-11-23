@@ -1,0 +1,25 @@
+/* Avisos y errores legibles en todas las pantallas. */
+.toast, .toast-info, .toast-success, .toast-warning, .toast-error,
+.alert, .alert-danger, .alert-success, .alert-warning, .alert-info,
+.mensaje, .mensaje-error, .mensaje-exito, .mensaje-aviso,
+.error-message, .success-message, .notification, .notice,
+[role="alert"], [role="status"], [aria-live="polite"], [aria-live="assertive"],
+#mensaje, #msg, #error, #resultado, #aviso, #statusMessage {
+  color: #101010 !important;
+  text-shadow: none !important;
+}
+.toast, .toast-info, .toast-success, .toast-warning, .toast-error {
+  background-color: #eaf4ff !important;
+  border: 1px solid #8bb5db !important;
+}
+.toast-error, .alert-danger, .mensaje-error, .error-message {
+  background-color: #fff0f0 !important;
+  border-color: #e2a6a6 !important;
+}
+.toast-success, .alert-success, .mensaje-exito, .success-message {
+  background-color: #edf9ef !important;
+  border-color: #99caa4 !important;
+}
+/* El texto anidado hereda el contraste incluso si hay estilos antiguos. */
+.toast *, .alert *, [role="alert"] *, [role="status"] *,
+#mensaje *, #msg * { color: #101010 !important; }

@@ -1,0 +1,78 @@
+/* Azucreativo: menú lateral responsive, inspirado en la referencia del usuario. */
+html,body{min-height:100%}
+.app-container{display:flex!important;flex-direction:row!important;min-height:100vh;height:auto!important;width:100%}
+.app-container>.sidebar{box-sizing:border-box;flex:0 0 272px!important;width:272px!important;min-width:0!important;min-height:100vh!important;height:auto!important;position:relative!important;background:#eaf0fc!important;color:#243a59!important;box-shadow:3px 0 14px rgba(30,55,95,.09);z-index:25;padding:0!important;overflow:visible!important}
+.app-container>.sidebar .sidebar-nav{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:0!important;width:100%!important;overflow:visible!important}
+.app-container>.sidebar .sidebar-item{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;box-sizing:border-box!important;min-height:48px!important;margin:0!important;padding:12px 18px!important;border:0!important;border-bottom:1px solid #d6e2f5!important;border-radius:0!important;background:#eaf0fc!important;color:#284262!important;text-decoration:none!important;font-size:14px!important;white-space:normal!important;box-shadow:none!important}
+.app-container>.sidebar .sidebar-item:hover{background:#d8e5fb!important;color:#1e3655!important}
+.app-container>.sidebar .sidebar-item.active{background:#d1dff8!important;color:#18365b!important;font-weight:700!important;border-left:4px solid #93b0e9!important}
+.app-container>.sidebar .sidebar-item .nav-label{display:flex!important;align-items:center!important;gap:12px!important}
+.app-container>.sidebar .sidebar-item .arrow,.app-container>.sidebar .nav-section-title{display:none!important}
+.azu-nav-group{width:100%;margin:0}.azu-nav-group>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:12px 18px;background:#e0eafb;border-bottom:1px solid #cbdcf4;color:#243f65;font-size:14px;font-weight:700;box-sizing:border-box}.azu-nav-group>summary::-webkit-details-marker{display:none}.azu-nav-group>summary:hover{background:#d0e0fa}.azu-nav-group[open]>summary{background:#cddcf6}.azu-chevron{font-size:21px;line-height:1;transition:transform .15s}.azu-nav-group[open] .azu-chevron{transform:rotate(180deg)}
+.app-container>.sidebar .azu-nav-subitems .sidebar-item{background:#f3f7ff!important;padding-left:31px!important}.app-container>.sidebar .azu-nav-subitems .sidebar-item:hover{background:#e4edff!important}.app-container>.sidebar .azu-nav-subitems .sidebar-item.active{background:#d8e5fc!important}
+.azu-menu-toggle{display:flex!important;align-items:center;justify-content:space-between;width:100%;margin:0!important;padding:17px 19px!important;min-height:69px;background:#d4b4dd!important;color:#35234e!important;border:0!important;border-radius:0!important;cursor:pointer;font:700 22px system-ui,sans-serif!important;text-align:left}.azu-menu-toggle:hover{background:#c9a5d7!important}.azu-menu-toggle:focus-visible,.azu-nav-group>summary:focus-visible{outline:3px solid #7d62b4;outline-offset:-3px}
+.app-container>.sidebar.azu-collapsed{flex-basis:68px!important;width:68px!important}.app-container>.sidebar.azu-collapsed .sidebar-nav{display:none!important}.app-container>.sidebar.azu-collapsed .azu-menu-toggle{font-size:0!important;justify-content:center;padding:16px 6px!important}.app-container>.sidebar.azu-collapsed .azu-menu-toggle .azu-menu-icon{font-size:25px!important}
+.app-container>.main-content{flex:1 1 0!important;min-width:0!important;width:auto!important;overflow-x:auto}
+.azu-alert-widget{position:fixed;right:22px;top:17px;z-index:9999;display:flex;align-items:center;gap:8px}.azu-alert-bell{position:relative;display:grid;place-items:center;width:51px;height:51px;background:#f6eafa;color:#422e61;border:2px solid #ddc8ef;border-radius:50%;box-shadow:0 3px 12px #3b31502b;font-size:25px;text-decoration:none}.azu-alert-bell:hover{background:#ebd8f6}.azu-alert-count{position:absolute;top:-6px;right:-7px;min-width:22px;height:22px;padding:0 3px;border-radius:20px;background:#cf4763;color:#fff;font:700 12px/22px system-ui,sans-serif;text-align:center}.azu-alert-count[hidden]{display:none}.azu-alert-tooltip{display:none;max-width:230px;padding:8px 10px;border-radius:9px;background:#fff;color:#34425b;box-shadow:0 3px 14px #2222;font:12px system-ui,sans-serif}.azu-alert-widget:hover .azu-alert-tooltip,.azu-alert-widget:focus-within .azu-alert-tooltip{display:block}.app-container .header-bar{padding-right:90px!important}
+/* Las pantallas de cliente y empleado mantienen sus menús de rol. */
+.app-container>.sidebar .role-nav{display:flex;flex-direction:column;align-items:stretch}.app-container>.sidebar .role-nav a{display:block;padding:13px 16px;background:#edf3ff;color:#284262;text-decoration:none;border-bottom:1px solid #d7e3f5}.app-container>.sidebar .role-nav a:hover,.app-container>.sidebar .role-nav a.active{background:#d8e5fb}.app-container>.sidebar .role-logo{max-width:90px;align-self:center;margin:12px auto}
+@media(max-width:760px){.app-container>.sidebar{flex:0 0 220px!important;width:220px!important}.app-container>.sidebar .sidebar-item{font-size:13px!important}.azu-menu-toggle{font-size:18px!important}.azu-alert-widget{right:12px;top:10px}.azu-alert-bell{width:43px;height:43px;font-size:21px}.app-container .header-bar{padding-right:65px!important}}
+@media(max-width:480px){.app-container>.sidebar{flex:0 0 190px!important;width:190px!important}.app-container>.sidebar.azu-collapsed{flex-basis:54px!important;width:54px!important}.azu-nav-group>summary{padding:11px 9px;font-size:12px}.app-container>.sidebar .sidebar-item{padding:10px!important;font-size:12px!important}.app-container>.sidebar .azu-nav-subitems .sidebar-item{padding-left:16px!important}.azu-menu-toggle{padding:12px 10px!important}}
+
+
+/* Azucreativo — identidad azul pastel y fondo de dulceria (2026-11). */
+:root{--azu-blue-50:#f3faff;--azu-blue-100:#e4f3ff;--azu-blue-150:#d7ecfa;--azu-blue-200:#c5e2f6;--azu-blue-300:#a9d1ed;--azu-ink:#254867}
+html,body{background:#eaf7ff!important}
+.app-container>.sidebar{background:linear-gradient(180deg,#e9f6ff 0%,#d9edfb 100%)!important;border-right:1px solid #bedcf0!important;box-shadow:4px 0 22px rgba(35,95,142,.11)!important}
+.azu-menu-toggle{background:linear-gradient(110deg,#badcf3,#d6edfc)!important;color:#224968!important;border-bottom:1px solid #a9d0ea!important;text-shadow:none!important}
+.azu-menu-toggle:hover{background:#acd5f0!important}
+.app-container>.sidebar .sidebar-item{background:#e9f5fd!important;color:#294c6a!important;border-bottom-color:#cce4f4!important}
+.app-container>.sidebar .sidebar-item:hover{background:#d3eafb!important;color:#153c60!important}
+.app-container>.sidebar .sidebar-item.active{background:#bedff6!important;color:#163d5f!important;border-left-color:#6caddc!important}
+.azu-nav-group>summary{background:#d9edfa!important;color:#264b69!important;border-bottom-color:#bcdcf0!important}
+.azu-nav-group>summary:hover,.azu-nav-group[open]>summary{background:#c5e3f6!important}
+.app-container>.sidebar .azu-nav-subitems .sidebar-item{background:#f1f9ff!important}
+.app-container>.sidebar .azu-nav-subitems .sidebar-item:hover{background:#dceefa!important}
+.app-container>.sidebar .azu-nav-subitems .sidebar-item.active{background:#cce5f8!important}
+.app-container>.sidebar .role-nav a{background:#e9f5fd!important;color:#294c6a!important}
+.app-container>.sidebar .role-nav a:hover,.app-container>.sidebar .role-nav a.active{background:#cce5f8!important}
+.azu-alert-bell{background:#e8f5ff!important;color:#24547a!important;border-color:#a9d3ee!important;box-shadow:0 4px 16px #3978a12a!important}
+.azu-alert-bell:hover{background:#cde9fc!important}
+.azu-alert-count{background:#dc5872!important}
+/* Fondo decorativo en contenido, con capa blanca translúcida para mantener legibilidad. */
+.app-container>.main-content{background:linear-gradient(rgba(246,252,255,.81),rgba(246,252,255,.85)),url('/Azucreativo/assets/fondo-dulceria-azul.jpg') center center/cover fixed no-repeat!important}
+/* Formularios y tarjetas permanecen opacos y legibles. */
+.app-container>.main-content .card,.app-container>.main-content .panel,.app-container>.main-content .product-card,.app-container>.main-content .stat-card{background-color:#fff!important}
+@media(max-width:760px){.app-container>.main-content{background:linear-gradient(rgba(247,252,255,.88),rgba(247,252,255,.9)),url('/Azucreativo/assets/fondo-dulceria-azul.jpg') center/cover scroll no-repeat!important}}
+@media(prefers-reduced-motion:reduce){.app-container>.main-content{background-attachment:scroll!important}}
+
+/* Desplazamiento vertical en los tres roles */
+html{overflow-y:auto!important;scroll-behavior:smooth}
+body{min-height:100vh!important;height:auto!important;overflow-y:auto!important}
+.app-container{min-height:100vh!important;height:auto!important;overflow-y:visible!important}
+.app-container>.main-content{min-height:100vh!important;height:auto!important;overflow-y:visible!important;overflow-x:clip!important}
+@media(max-width:760px){html{scroll-behavior:auto}}
+
+/* FIX 2026-11: los estilos originales encerraban el contenido en contenedores
+   de 100vh y overflow:hidden; ahora el documento puede crecer y desplazarse. */
+html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important}
+body{min-height:100vh!important}
+body>.app-container,body>div>.app-container,.app-container{
+ height:auto!important;min-height:100vh!important;max-height:none!important;
+ overflow:visible!important;overflow-x:clip!important;
+}
+.app-container>.main-content,.main-content{
+ height:auto!important;min-height:100vh!important;max-height:none!important;
+ overflow:visible!important;overflow-x:clip!important;
+}
+.app-container .view-container,.view-container{
+ height:auto!important;min-height:0!important;max-height:none!important;
+ overflow:visible!important;
+}
+.app-container .view-section,.view-section{
+ height:auto!important;min-height:0!important;max-height:none!important;
+ overflow:visible!important;
+}
+/* El menú permanece visible al bajar, sin encerrar la página. */
+.app-container>.sidebar{align-self:stretch!important}
+@media(max-width:760px){.app-container>.sidebar{align-self:stretch!important}}

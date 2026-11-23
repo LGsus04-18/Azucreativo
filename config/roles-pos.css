@@ -1,0 +1,34 @@
+/* Apariencia compartida con el punto de venta del administrador */
+body{height:auto!important;min-height:100vh!important}.app-container{height:auto!important;min-height:100vh!important}.app-container>.main-content{overflow:visible!important}.app-container>.sidebar{position:sticky!important;top:0}.main-content{padding-bottom:50px}.view-section{display:block!important}.pos-grid{align-items:start}.catalog-card,.cart-card{min-width:0}.products-grid{min-height:140px}.product-card{display:flex;flex-direction:column;justify-content:space-between;gap:15px}.product-card button{cursor:pointer}.product-card button:disabled{opacity:.45}.cart-line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #dbeafe}.cart-line button{background:#2563eb;color:white;border:0;border-radius:7px;padding:5px 11px;cursor:pointer;margin-left:5px}.pos-fields{display:grid;gap:12px;margin-top:16px}.pos-fields input,.pos-fields select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px}.pos-fields label{font-weight:650;font-size:13px}.pos-action{width:100%;padding:13px;border:0;background:#2563eb;color:white;border-radius:10px;font-weight:700;cursor:pointer}.pos-action:disabled{opacity:.5}.pos-note{font-size:13px;color:#64748b}.pos-alert{padding:12px;background:#dbeafe;color:#1e3a8a;border-radius:9px;margin:12px 0}.pos-alert a{color:#1d4ed8}.pos-catalog-header{flex-wrap:wrap}.search-input-wrapper input{width:min(290px,65vw)}.brand-banner img{object-fit:contain}.cash-panel{margin-top:25px}.cash-panel .card{padding:24px}.cash-panel input{padding:11px;border:1px solid #cbd5e1;border-radius:8px;max-width:350px}.sidebar-nav{display:flex;gap:10px}.role-logo{width:40px;height:40px;object-fit:contain;border-radius:8px;background:white}.role-nav{display:flex;align-items:center;gap:12px}.role-nav a{color:white;text-decoration:none;padding:10px;border-radius:8px}.role-nav a.active,.role-nav a:hover{background:#dbeafe;color:#1e3a8a}.role-nav .brand-name{font-weight:800;color:white}.product-category{min-height:18px}@media(max-width:900px){.pos-grid{display:grid;grid-template-columns:1fr!important}.role-nav{overflow-x:auto}.cart-card{width:100%}}
+
+/* Uniformidad visual: los tres roles usan el color de texto del menú administrador. */
+.app-container > .sidebar .role-nav .brand-name,
+.app-container > .sidebar .brand-name {
+  color:#294c6a !important;
+  font-weight:800 !important;
+  letter-spacing:.055em;
+  text-shadow:none !important;
+}
+.app-container > .sidebar .role-nav a,
+.app-container > .sidebar .role-nav a:link,
+.app-container > .sidebar .role-nav a:visited {
+  color:#294c6a !important;
+  background:#e9f5fd !important;
+  border-bottom:1px solid #cce4f4 !important;
+  font-size:14px !important;
+  font-weight:500 !important;
+}
+.app-container > .sidebar .role-nav a:hover,
+.app-container > .sidebar .role-nav a:focus-visible {
+  color:#153c60 !important;
+  background:#d3eafb !important;
+}
+.app-container > .sidebar .role-nav a.active {
+  color:#163d5f !important;
+  background:#bedff6 !important;
+  border-left:4px solid #6caddc !important;
+  font-weight:700 !important;
+}
+
+/* Corrección final: título AZUCREATIVO azul idéntico en empleado y cliente. */
+html body .app-container aside.sidebar nav.role-nav span.brand-name { color:#294c6a !important; -webkit-text-fill-color:#294c6a !important; text-shadow:none !important; opacity:1 !important; }
